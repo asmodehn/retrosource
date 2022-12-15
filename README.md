@@ -1,4 +1,7 @@
-# Membrane Template Plugin
+# Membrane Template Plugin Experiment
+
+## TODO : review readme
+
 
 [![Hex.pm](https://img.shields.io/hexpm/v/membrane_template_plugin.svg)](https://hex.pm/packages/membrane_template_plugin)
 [![API Docs](https://img.shields.io/badge/api-docs-yellow.svg?style=flat)](https://hexdocs.pm/membrane_template_plugin)
@@ -24,4 +27,16 @@ end
 
 ## Usage
 
-TODO
+### Development
+
+```
+mix test
+```
+
+```
+mix credo
+```
+
+```
+mix dialyzer
+```

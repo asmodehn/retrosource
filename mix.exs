@@ -37,7 +37,8 @@ defmodule Membrane.Template.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, "~> 0.10.0"},
+      {:membrane_core, "~> 0.11.0"},
+      {:bunch, "~> 1.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
@@ -59,7 +60,7 @@ defmodule Membrane.Template.Mixfile do
 
   defp package do
     [
-      maintainers: ["Membrane Team"],
+      maintainers: ["Asmodehn"],
       licenses: ["Apache-2.0"],
       links: %{
         "GitHub" => @github_url,
@@ -74,7 +75,7 @@ defmodule Membrane.Template.Mixfile do
       extras: ["README.md", "LICENSE"],
       formatters: ["html"],
       source_ref: "v#{@version}",
-      nest_modules_by_prefix: [Membrane.Template]
+      nest_modules_by_prefix: [RetroSource]
     ]
   end
 end
