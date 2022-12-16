@@ -14,7 +14,7 @@ if Mix.env() == :dev do
           # stashing everything not staged, to test only what is in index
           {:cmd, "git stash push -u --keep-index"},
 
-          # forceful formatting
+          # forceful formatting, careful: may create conflit with stash
           {:cmd, "mix format"},
 
           # CAREFUL: this will add all files that havent been stashed previously
