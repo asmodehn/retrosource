@@ -11,8 +11,11 @@ if Mix.env() == :dev do
     hooks: [
       pre_commit: [
         tasks: [
+          # forceful formatting
           {:cmd, "mix format"},
-          {:cmd, "git add -u"}
+          {:cmd, "git add -u"},
+          # just once more to be sure
+          {:cmd, "mix format --check-formatted"}
         ]
       ],
       pre_push: [
