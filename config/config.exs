@@ -11,11 +11,20 @@ if Mix.env() == :dev do
     hooks: [
       pre_commit: [
         tasks: [
+          # stashing everything not staged, to test only what is in index
+          {:cmd, "git stash push -u --keep-index"},
+
           # forceful formatting
           {:cmd, "mix format"},
+
+          # CAREFUL: this will add all files that havent been stashed previously
           {:cmd, "git add -u"},
+
           # just once more to be sure
-          {:cmd, "mix format --check-formatted"}
+          {:cmd, "mix format --check-formatted"},
+
+          # pop the stash to revert to current working tree
+          {:cmd, "git stash pop"}
         ]
       ],
       pre_push: [
