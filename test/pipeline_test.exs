@@ -15,13 +15,11 @@ defmodule RetroSource.PipelineTest do
 
     # Simple pipeline setup in test
     pipeline_struct = [
-        child(:src, %RetroSource{datastream: range})
-        |> child(:sink, %Testing.Sink{})
-      ]
+      child(:src, %RetroSource{datastream: range})
+      |> child(:sink, %Testing.Sink{})
+    ]
 
-    assert {:ok, _supervisor_pid, pid} = Testing.Pipeline.start_link([
-      structure: pipeline_struct
-    ])
+    assert {:ok, _supervisor_pid, pid} = Testing.Pipeline.start_link(structure: pipeline_struct)
 
     # Assert correct actions taken (helps cleanup error trace in tests)
     # Note these may be asserted out of order, as per BEAM select receive for messages
@@ -31,7 +29,6 @@ defmodule RetroSource.PipelineTest do
     assert_sink_stream_format(pid, :sink, %Membrane.RemoteStream{})
     assert_start_of_stream(pid, :sink, :input)
     assert_pipeline_notified(pid, :sink, {:start_of_stream, :input})
-
 
     assert_end_of_stream(pid, :sink, :input)
 
