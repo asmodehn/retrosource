@@ -21,10 +21,16 @@ if Mix.env() == :dev do
       pre_push: [
         verbose: false,
         tasks: [
+          # stashing everything, to test only what is in HEAD
+          {:cmd, "git stash push -u"},
+
+          # run the command that must succeed, before pushing and bothering CI
           {:cmd, "mix dialyzer"},
-          # {:cmd, "mix credo"},
+          # {:cmd, "mix credo --strict"},
           {:cmd, "mix test --color"},
-          {:cmd, "echo 'Success!'"}
+
+          # pop the stash to revert to current working tree
+          {:cmd, "git stash pop"}
         ]
       ],
       post_checkout: [

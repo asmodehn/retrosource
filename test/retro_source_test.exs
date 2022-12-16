@@ -112,12 +112,18 @@ defmodule RetroSource.Test do
        }} = RetroSource.handle_init(nil, sourcemap)
 
       # looping with increasing buffersize in demand
-      for n <- 1..100 do
+      for n <- 0..100 do
         {actions, _state} =
           RetroSource.handle_demand(:output, n, :buffers, nil, %{continuation: continuation})
 
-        # asserting we only buffer the demanded size in output
-        assert buffer: {:output, %Buffer{payload: Enum.to_list(1..n)}} in actions
+        # asserting we buffer all the demand in output
+        for m <- 0..n do
+          assert %Buffer{payload: m} in actions.buffer.output
+        end
+
+        for m <- n..100 do
+          refute %Buffer{payload: m} in actions.buffer.output
+        end
 
         # asserting we follow up with the rest of the stream if possible, or properly end otherwise
         assert {:end_of_stream, :output} in actions
@@ -136,7 +142,7 @@ defmodule RetroSource.Test do
         RetroSource.handle_demand(:output, 101, :buffers, nil, %{continuation: continuation})
 
       # asserting we only buffer the demanded size in output
-      assert buffer: {:output, %Buffer{payload: Enum.to_list(1..100)}} in actions
+      assert {:buffer, {:output, %Buffer{payload: Enum.to_list(1..100)}}} in actions
 
       # asserting we follow up with the rest of the stream if possible, or properly end otherwise
       # assert {:redemand, :output} in actions
