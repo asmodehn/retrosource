@@ -24,7 +24,7 @@ if Mix.env() == :dev do
           {:cmd, "mix format --check-formatted"},
 
           # pop the stash to revert to current working tree
-          {:cmd, "git stash pop"}
+          {:cmd, "git stash pop --index"}
         ]
       ],
       pre_push: [
