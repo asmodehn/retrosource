@@ -41,7 +41,8 @@ defmodule Membrane.Template.Mixfile do
       {:bunch, "~> 1.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
-      {:credo, ">= 0.0.0", only: :dev, runtime: false}
+      {:credo, ">= 0.0.0", only: :dev, runtime: false},
+      {:git_hooks, "~> 0.7.0", only: [:dev], runtime: false}
     ]
   end
 

@@ -11,7 +11,7 @@ defmodule RetroSource do
   alias Membrane.Buffer
 
   def_options datastream: [
-                spec: Ennumerable.t(),
+                spec: Enumerable.t(),
                 default: 0..9,
                 description: """
                 Enumerable | Stream to use as generator for data to output
