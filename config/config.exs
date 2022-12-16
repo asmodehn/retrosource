@@ -16,8 +16,8 @@ if Mix.env() == :dev do
           # file are now formatted, but not added to commit just yet !
 
           # run the command that must succeed, before committing and bothering CI
-          {:cmd, "mix dialyzer"}
-          # {:cmd, "mix test --color"}
+          {:cmd, "mix dialyzer"},
+          {:cmd, "mix test --trace --color"}
         ]
       ],
       post_checkout: [

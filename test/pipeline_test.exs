@@ -15,7 +15,7 @@ defmodule RetroSource.PipelineTest do
 
     # Simple pipeline setup in test
     pipeline_struct = [
-      child(:src, %RetroSource{datastream: range})
+      child(:src, %RetroSource.Consumable{datastream: range})
       |> child(:sink, %Testing.Sink{})
     ]
 
