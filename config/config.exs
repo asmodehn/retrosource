@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 if Mix.env() == :dev do
   config :git_hooks,
@@ -11,7 +11,8 @@ if Mix.env() == :dev do
     hooks: [
       pre_commit: [
         tasks: [
-          {:cmd, "mix format --check-formatted"}
+          {:cmd, "mix format"},
+          {:cmd, "git add -u"}
         ]
       ],
       pre_push: [
@@ -21,6 +22,11 @@ if Mix.env() == :dev do
           # {:cmd, "mix credo"},
           {:cmd, "mix test --color"},
           {:cmd, "echo 'Success!'"}
+        ]
+      ],
+      post_checkout: [
+        tasks: [
+          {:cmd, "mix deps.get"}
         ]
       ]
     ]
